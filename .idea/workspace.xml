@@ -151,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592320484816</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add função Kill para tarefa travada">
+      <created>1592330762124</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592330762124</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,10 +181,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1587669478649" />
-    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1592320483392">
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1592330761329">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592320483392" />
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592330761329" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590721568707">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -218,6 +225,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590586363449" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1592330773279">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592330773279" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1592311864281">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
