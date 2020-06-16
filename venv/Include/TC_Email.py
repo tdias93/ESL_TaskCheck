@@ -32,6 +32,8 @@ def send_email(subject, msg):
         email_error = error
         return [email_status, email_error]
 
-email_user = 'thiago.dias@brsamor.com.br'
-email_send = 'thiago.olimpio93@gmail.com'
-password = ''   # Senha do E-mail
+email_user = 'ti.brsamor@brsamor.com.br'
+email_send = 'thiago.dias@brsamor.com.br'
+password = 'SUA SENHA AQUI'
+
+

@@ -19,7 +19,8 @@ def insert():
         task_status,            # ENVIA P/ BD -> Status do PID
         log_time,               # ENVIA P/ BD -> Data do Log
         email_status,           # ENVIA P/ BD -> Status evio do e-mail
-        email_error)            # ENVIA P/ BD -> Erro envio e-mail
+        email_error,            # ENVIA P/ BD -> Erro envio e-mail
+        process_log)            # ENVIA P/ BD -> Erro no reset da tarefa
 
 
 # Pega nome da tarefa a ser analisada
@@ -32,6 +33,7 @@ psutil_flag = 0                                                  # flag 0 -> Bus
 for proc in psutil.process_iter(attrs=['name', 'pid']):          # Percorre todas as tarefas em execução
 
     if proc.info['name'] == process_name:                        # Valida se o nome atual da tarefa corresponde ao analisado
+        print(proc.info['name'])
         psutil_flag = 1                                          # flag 1 -> Busca Correspondida
         p = psutil.Process(pid= proc.info['pid'])
 
@@ -51,7 +53,7 @@ for proc in psutil.process_iter(attrs=['name', 'pid']):          # Percorre toda
 
         # Valida Status da processo PID
         for status in task_status[3].split():
-            if status == 'Running':
+            if status == '#############Running':
                 task_status = 'Running'
                 break
             else:
@@ -69,16 +71,33 @@ for proc in psutil.process_iter(attrs=['name', 'pid']):          # Percorre toda
             flag = 0                                       # flag 0 -> Envia e-mail
 
             for value in result:
-                for v_result in value:
-                    if v_result != 'Not Responding':
-                        flag = 1                           # flag 1 -> Não envia e-mail
+
+                if value[0] != 'Not Responding':
+                    flag = 1
+                print(value)
+
+                if value[1] != '':
+                    flag = 2
 
             if flag == 1:                   # flag 1 -> Não envia e-mail
-
                 email_status = 'Not Sent'   # Define valor -> Status envio e-mail
                 email_error = ''            # Define valor -> Erro envio e-mail
                 insert()                    # Chama função para salvar dados no BD
-            
+
+            elif flag == 2:
+                try:
+                    proc.kill()
+                    email_status = 'Not Sent'       # Define valor -> Status envio e-mail
+                    email_error = ''                # Define valor -> Erro envio e-mail
+                    process_log = 'System Reset'    # Define valor -> Reset Log
+                    insert()
+
+                except Exception as error:
+                    email_status = 'Not Sent'       # Define valor -> Status envio e-mail
+                    email_error = ''                # Define valor -> Erro envio e-mail
+                    process_log = str(error)        # Define valor -> Reset Log
+                    insert()
+
             else:
                 subject = 'Attention - Gerenciador de Tarefas'
                 msg = 'Hello! ' \

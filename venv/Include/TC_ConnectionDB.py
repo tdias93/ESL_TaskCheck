@@ -19,18 +19,17 @@ def connection():
               f'    Error: {error}')
 
 
-def insert(pid_number, task_name, svmem_used, svmem_free, svmem_perc, sswap_used, sswap_free, sswap_perc, boot_time, user_name, cpu_used, task_status, log_time, email_status, email_error):
+def insert(pid_number, task_name, svmem_used, svmem_free, svmem_perc, sswap_used, sswap_free, sswap_perc, boot_time, user_name, cpu_used, task_status, log_time, email_status, email_error, process_log):
     try:
         sql = f"INSERT INTO tbd_GerenciadorTarefasRefistro (pid_number, task_name, svmem_used, svmem_free, svmem_perc, sswap_used, sswap_free, sswap_perc, boot_time, user_name, cpu_used, " \
-              f"task_status, log_time, email_status, email_error) VALUES ({pid_number}, '{task_name}', '{svmem_used}', {svmem_free}, {svmem_perc}, {sswap_used}, {sswap_free}, {sswap_perc}, " \
-              f"'{boot_time}', '{user_name}', {cpu_used}, '{task_status}', '{log_time}', '{email_status}', '{email_error}')"
+              f"task_status, log_time, email_status, email_error, process_log) VALUES ({pid_number}, '{task_name}', '{svmem_used}', {svmem_free}, {svmem_perc}, {sswap_used}, {sswap_free}, {sswap_perc}, " \
+              f"'{boot_time}', '{user_name}', {cpu_used}, '{task_status}', '{log_time}', '{email_status}', '{email_error}', '{process_log}')"
 
         con = connection()                  # Abre Conexão com BD
         cursor = con.cursor()               # Obtem uma transação
         cursor.execute(sql)                 # Passa comando de dados em SQL
         con.commit()                        # Executa comandos no banco de dados
-        # cursor.close                        # Fecha cursor
-        con.close                    # Fecha conexão
+        con.close                           # Fecha conexão
 
     except pyodbc.Error as error:
         print(f'################################################## Error INSERT: {error}')
@@ -38,7 +37,7 @@ def insert(pid_number, task_name, svmem_used, svmem_free, svmem_perc, sswap_used
 
 def select(pid_number):
     try:
-        sql = f'SELECT TOP 5 task_status FROM tbd_GerenciadorTarefasRefistro WHERE pid_number = {pid_number} ORDER BY id DESC'
+        sql = f'SELECT TOP 5 task_status, id FROM tbd_GerenciadorTarefasRefistro WHERE pid_number = 1 ORDER BY id DESC'     # {pid_number} ORDER BY id DESC
 
         con = connection()                  # Abre Conexão com BD
         cursor = con.cursor()               # Obtem uma transação
